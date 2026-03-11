@@ -1,0 +1,49 @@
+.course-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.course {
+    width: 230px;
+    height: 450px;
+    border: 1px solid lightblue;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.course-title {
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+.course-desc {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12px;
+}
+
+.course-price {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: chocolate;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.course-link {
+    font-size: 12px;
+    text-align: right;
+    padding-right: 20px;
+    color: crimson;
+    display: block;
+    text-decoration: none;
+}
+
+.course-image {
+    display: block;
+    margin: auto;
+    width: 100%;
+}

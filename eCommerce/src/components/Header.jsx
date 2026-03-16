@@ -3,12 +3,15 @@ import '../CSS/Header.css';
 import { RiShoppingBasketFill } from "react-icons/ri";
 import { CiLight } from "react-icons/ci";
 import { FaMoon } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Header() {
 
     const [theme, setTheme] = useState(false);
+
+    const navigate = useNavigate();
 
     const changeTime = () => {
         const root = document.getElementById("root");
@@ -23,11 +26,10 @@ function Header() {
         setTheme(!theme)
     }
 
-
     return (
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div className='flex-row'>
-                <img className='logo' src="./src/images/logo.png" />
+            <div className='flex-row' onClick={() => navigate("/")}>
+                <img style={{ cursor: 'pointer' }} className='logo' src="./src/images/logo.png" />
                 <p className='logo-text'>Orange teak</p>
             </div>
 

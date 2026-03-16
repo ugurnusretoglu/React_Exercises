@@ -5,6 +5,7 @@ import { setSelectedProduct } from '../redux/slices/productSlice';
 import '../CSS/ProductDetails.css'
 import { GoPlus } from "react-icons/go";
 import { AiOutlineMinus } from "react-icons/ai";
+import { addToBasket, calculateBasket } from '../redux/slices/basketSlice';
 
 function ProductDetails() {
     const { id } = useParams();
@@ -24,6 +25,19 @@ function ProductDetails() {
         if (count !== 0) {
             setCount(count - 1)
         }
+    }
+
+    const addBasket = () => {
+        const payload = {
+            id,
+            price,
+            image,
+            title,
+            description,
+            count
+        }
+        dispatch(addToBasket(payload));
+        dispatch(calculateBasket());
     }
 
 
@@ -54,7 +68,7 @@ function ProductDetails() {
                 </div>
 
                 <div>
-                    <button className='cart-button'>Add to cart</button>
+                    <button onClick={addBasket} className='cart-button'>Add to cart</button>
                 </div>
 
             </div>

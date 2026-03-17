@@ -1,0 +1,15 @@
+.todo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid lightsalmon;
+    padding: 12px;
+    margin-top: 30px;
+    border-radius: 5px;
+}
+
+.icons {
+    font-size: 22px;
+    cursor: pointer;
+}

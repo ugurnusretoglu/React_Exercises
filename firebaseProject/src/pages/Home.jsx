@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from '../Firebase';
 
 function Home() {
-    return (
-        <div>
 
-        </div>
+    const [user, setUser] = useState('');
+
+    const getUserInfo = () => {
+        onAuthStateChanged(auth, (userCredential) => {
+            if (userCredential) {
+                setUser(userCredential.email)
+            }
+        })
+    }
+
+    useEffect(() => {
+        getUserInfo();
+    }, [])
+
+    return (
+        <div style={{ margin: '10px', fontSize: '25px' }}>Hello {user}</div>
     )
 }
 

@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "username": "ugurnusretoglu",
+      "password": "123456",
+      "id": "zXFl0_C2nfw"
+    },
+    {
+      "username": "arthur",
+      "password": "sp458",
+      "id": "T2Ab9nYV9WA"
+    },
+    {
+      "username": "steven",
+      "password": "5486",
+      "id": "RMROXoR9rHE"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

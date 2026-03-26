@@ -1,11 +1,38 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import type { UserType } from '../types/Types';
-import { setCurrentUser } from '../redux/appSlice';
+import { useDispatch, useSelector } from 'react-redux'
+import type { ProductType, UserType } from '../types/Types';
+import { setCurrentUser, setLoading, setProducts } from '../redux/appSlice';
+import productService from '../services/ProductService';
+import { toast } from 'react-toastify';
+import type { RootState } from '../redux/store';
+import ProductCard from '../components/ProductCard';
+import '../CSS/Home.css';
 
 function Home() {
 
     const dispatch = useDispatch();
+
+    const { products } = useSelector((state: RootState) => state.app);
+
+    const getAllProduct = async () => {
+        try {
+            dispatch(setLoading(true));
+            const response: ProductType[] = await productService.getAllProducts();
+            if (response) {
+                dispatch(setProducts(response))
+            }
+        } catch (error) {
+            toast.error("An error occurred while delivering the products : " + error)
+        }
+        finally {
+            dispatch(setLoading(false))
+        }
+    }
+
+    useEffect(() => {
+        getAllProduct();
+    }, [])
+
 
     useEffect(() => {
         const result = localStorage.getItem("currentUser")
@@ -13,10 +40,16 @@ function Home() {
             const currentUser: UserType = JSON.parse(result) as UserType;
             dispatch(setCurrentUser(currentUser));
         }
-    })
+    }, [])
 
     return (
-        <div>Home</div>
+        <div className='home-product'>
+            {
+                products && products.map((product: ProductType, index: number) => (
+                    <ProductCard key={index} product={product} />
+                ))
+            }
+        </div>
     )
 }
 

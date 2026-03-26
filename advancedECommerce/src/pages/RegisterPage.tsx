@@ -1,4 +1,3 @@
-import React from 'react'
 import '../CSS/RegisterPage.css';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -19,8 +18,10 @@ function RegisterPage() {
     const submit = async (values: any, actions: any) => {
         try {
             const payload: UserType = {
+                id: String(Math.floor(Math.random() * 9999999)),
                 username: values.username,
-                password: values.password
+                password: values.password,
+                balance: 1000
             }
             const response = await registerPageService.register(payload)
             if (response) {

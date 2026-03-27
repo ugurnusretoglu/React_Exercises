@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import type { RootState } from '../redux/store';
 import ProductCard from '../components/ProductCard';
 import '../CSS/Home.css';
+import Navbar from '../components/Navbar';
 
 function Home() {
 
@@ -43,13 +44,17 @@ function Home() {
     }, [])
 
     return (
-        <div className='home-product'>
-            {
-                products && products.map((product: ProductType, index: number) => (
-                    <ProductCard key={index} product={product} />
-                ))
-            }
+        <div>
+            <Navbar />
+            <div className='home-product'>
+                {
+                    products && products.map((product: ProductType, index: number) => (
+                        <ProductCard key={index} product={product} />
+                    ))
+                }
+            </div>
         </div>
+
     )
 }
 

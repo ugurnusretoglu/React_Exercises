@@ -2,7 +2,7 @@ import axios, { type AxiosResponse } from "axios";
 import type { ProductType } from "../types/Types";
 
 class ProductService {
-    BASE_URL = "http://fakestoreapi.com";
+    BASE_URL = "https://fakestoreapi.com";
 
     getAllProducts(): Promise<ProductType[]> {
         return new Promise((resolve: any, reject: any) => {

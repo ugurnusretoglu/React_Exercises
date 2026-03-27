@@ -8,7 +8,10 @@ import IconButton from '@mui/material/IconButton';
 import logoImage from '../images/logoImage.png'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setCurrentUser } from '../redux/appSlice';
+import { filterProducts, setCurrentUser, setLoading, setProducts } from '../redux/appSlice';
+import { toast } from 'react-toastify';
+import productService from '../services/ProductService';
+import type { ProductType } from '../types/Types';
 
 function Navbar() {
 
@@ -19,6 +22,20 @@ function Navbar() {
         localStorage.removeItem("currentUser");
         dispatch(setCurrentUser(null))
         navigate("/login")
+    }
+
+    const handleFilter = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        try {
+            if (e.target.value) {
+                dispatch(filterProducts(e.target.value))
+            }
+            else {
+                const products: ProductType[] = await productService.getAllProducts();
+                dispatch(setProducts(products));
+            }
+        } catch (error) {
+            toast.error("An error occurred during filtering." + error);
+        }
     }
 
     return (
@@ -40,6 +57,7 @@ function Navbar() {
 
                     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                         <TextField
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFilter(e)}
                             sx={{ width: '300px', marginBottom: '25px', marginRight: '20px' }}
                             id="searchInput"
                             placeholder='Search...'

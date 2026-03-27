@@ -8,6 +8,9 @@ import type { RootState } from '../redux/store';
 import ProductCard from '../components/ProductCard';
 import '../CSS/Home.css';
 import Navbar from '../components/Navbar';
+import Category from '../components/Category';
+import Container from '@mui/material/Container';
+
 
 function Home() {
 
@@ -46,14 +49,21 @@ function Home() {
     return (
         <div>
             <Navbar />
-            <div className='home-product'>
-                {
-                    products && products.map((product: ProductType, index: number) => (
-                        <ProductCard key={index} product={product} />
-                    ))
-                }
+            <div className='home-category'>
+                <Category />
+
+                <Container maxWidth="xl">
+                    <div className='home-product'>
+                        {
+                            products && products.map((product: ProductType, index: number) => (
+                                <ProductCard key={index} product={product} />
+                            ))
+                        }
+                    </div>
+                </Container>
             </div>
-        </div>
+
+        </div >
 
     )
 }

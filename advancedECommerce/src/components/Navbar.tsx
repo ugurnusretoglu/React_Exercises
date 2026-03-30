@@ -30,6 +30,14 @@ function Navbar() {
         navigate("/login")
     }
 
+    const goToBasket = () => {
+        navigate("/basket");
+    }
+
+    const goToHome = () => {
+        navigate("/");
+    }
+
     const handleFilter = async (e: React.ChangeEvent<HTMLInputElement>) => {
         try {
             if (e.target.value) {
@@ -55,7 +63,7 @@ function Navbar() {
                         aria-label="menu"
                         sx={{ mr: 2 }}
                     >
-                        <img src={logoImage} width={60} height={60} />
+                        <img onClick={goToHome} src={logoImage} width={60} height={60} />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Orange Teak
@@ -84,7 +92,7 @@ function Navbar() {
                             variant="standard"
                         />
                         <Badge badgeContent={basket.length} color="warning" sx={{ margin: '0px 10px', cursor: 'pointer' }}>
-                            <SlBasket color="secondary" style={{ fontSize: '20px' }} />
+                            <SlBasket onClick={goToBasket} color="secondary" style={{ fontSize: '20px' }} />
                         </Badge>
                         <Button onClick={logout} sx={{ textTransform: 'none', color: 'lightwhite' }} color="inherit">Exit</Button>
                     </div>

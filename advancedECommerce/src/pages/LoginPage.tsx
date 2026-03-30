@@ -73,6 +73,10 @@ function LoginPage() {
         resetForm();
     }
 
+    const goToRegister = () => {
+        navigate("/register");
+    }
+
     return (
         <div className='login'>
             <div className='main'>
@@ -119,6 +123,7 @@ function LoginPage() {
 
                         <div>
                             <Button type='submit' size='small' sx={{ textTransform: 'none', height: '30px', marginRight: '10px' }} variant='contained' color='info'>Log in</Button>
+                            <Button onClick={goToRegister} size='small' sx={{ textTransform: 'none', height: '30px', marginRight: '10px' }} variant='contained' color='inherit'>Register</Button>
                             <Button onClick={clear} size='small' sx={{ textTransform: 'none', height: '30px' }} variant='contained' color='inherit'>Clear</Button>
                         </div>
                     </div>

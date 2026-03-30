@@ -23,6 +23,13 @@ const appSlice = createSlice({
         setCurrentUser: (state: AppSliceType, action: PayloadAction<UserType | null>) => {
             state.currentUser = action.payload;
         },
+        updateBalance: (state: AppSliceType, action: PayloadAction<UserType>) => {
+            const user: UserType = {
+                ...action.payload
+            }
+            state.currentUser = user;
+            localStorage.setItem("currentUser", JSON.stringify(state.currentUser));
+        },
         setProducts: (state: AppSliceType, action: PayloadAction<ProductType[]>) => {
             state.products = action.payload;
         },
@@ -40,6 +47,6 @@ const appSlice = createSlice({
     }
 })
 
-export const { setLoading, setCurrentUser, setProducts, filterProducts } = appSlice.actions
+export const { setLoading, setCurrentUser, setProducts, filterProducts, updateBalance } = appSlice.actions
 
 export default appSlice.reducer

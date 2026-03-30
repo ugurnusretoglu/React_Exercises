@@ -9,6 +9,7 @@ import type { ProductType } from '../types/Types';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Button from '@mui/material/Button';
+import { addProductToBasket } from '../redux/basketSlice';
 
 
 function ProductDetail() {
@@ -48,6 +49,21 @@ function ProductDetail() {
         }
     }
 
+    const addBasket = () => {
+        if (product) {
+            if (count > 0) {
+                const payload: ProductType = {
+                    ...product,
+                    count: count
+                }
+                dispatch(addProductToBasket(payload));
+            }
+            else {
+                toast.warning("You must select the quantity of products.")
+            }
+        }
+    }
+
     useEffect(() => {
         getProductById(Number(productId));
     }, [])
@@ -73,7 +89,7 @@ function ProductDetail() {
                         </div>
 
                         <div>
-                            <Button color='warning' variant='contained' size='medium' sx={{ textTransform: 'none', marginTop: '35px' }}>Add Card</Button>
+                            <Button onClick={addBasket} color='warning' variant='contained' size='medium' sx={{ textTransform: 'none', marginTop: '35px' }}>Add Card</Button>
                         </div>
 
                     </div>

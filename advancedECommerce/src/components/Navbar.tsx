@@ -7,19 +7,22 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import logoImage from '../images/logoImage.png'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { filterProducts, setCurrentUser, setLoading, setProducts } from '../redux/appSlice';
 import { toast } from 'react-toastify';
 import productService from '../services/ProductService';
 import type { ProductType } from '../types/Types';
 import Badge from '@mui/material/Badge';
 import { SlBasket } from "react-icons/sl";
+import type { RootState } from '../redux/store';
 
 
 function Navbar() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const { basket } = useSelector((state: RootState) => state.basket)
 
     const logout = () => {
         localStorage.removeItem("currentUser");
@@ -80,7 +83,7 @@ function Navbar() {
                             }}
                             variant="standard"
                         />
-                        <Badge badgeContent={0} color="warning" sx={{ margin: '0px 10px', cursor: 'pointer' }}>
+                        <Badge badgeContent={basket.length} color="warning" sx={{ margin: '0px 10px', cursor: 'pointer' }}>
                             <SlBasket color="secondary" style={{ fontSize: '20px' }} />
                         </Badge>
                         <Button onClick={logout} sx={{ textTransform: 'none', color: 'lightwhite' }} color="inherit">Exit</Button>

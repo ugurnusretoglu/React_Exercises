@@ -12,6 +12,9 @@ import { filterProducts, setCurrentUser, setLoading, setProducts } from '../redu
 import { toast } from 'react-toastify';
 import productService from '../services/ProductService';
 import type { ProductType } from '../types/Types';
+import Badge from '@mui/material/Badge';
+import { SlBasket } from "react-icons/sl";
+
 
 function Navbar() {
 
@@ -77,7 +80,9 @@ function Navbar() {
                             }}
                             variant="standard"
                         />
-
+                        <Badge badgeContent={0} color="warning" sx={{ margin: '0px 10px', cursor: 'pointer' }}>
+                            <SlBasket color="secondary" style={{ fontSize: '20px' }} />
+                        </Badge>
                         <Button onClick={logout} sx={{ textTransform: 'none', color: 'lightwhite' }} color="inherit">Exit</Button>
                     </div>
                 </Toolbar>
